@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<!-- saved from url=(0058)file:///C:/Users/JADESOLA/Downloads/aemula-website-v4.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aemula — Operational Profit Recovery for Manufacturing SMEs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link href="./index_files/css2" rel="stylesheet">
+<style>
+:root {
+  --white:   #EDEDED;
+  --off:     #E4E4E2;
+  --light:   #D8D8D6;
+  --ink:     #1A1A1A;
+  --mid:     #525250;
+  --muted:   #8E8E8C;
+  --rule:    #C8C8C4;
+  --gold:    #B8751A;
+  --gold-l:  #D4954A;
+  --gold-bg: #FDF6EC;
+  --purple:  #5B1FA6;
+  --purple-l:#7B3FC4;
+  --purple-p:rgba(91,31,166,0.08);
+  --purple-b:rgba(91,31,166,0.18);
+  /* dashboard palette — intentionally dark, this is a UI element */
+  --dash-bg:    #1E2D45;
+  --dash-card:  #263549;
+  --dash-rule:  rgba(255,255,255,0.1);
+  --dash-muted: rgba(255,255,255,0.38);
+  --status-ok:  #2BA86C;
+  --status-warn:#D4821A;
+  --status-bad: #C43030;
+  /* navy brand palette — replaces dark greys */
+  --navy:       #0D2545;
+  --navy-mid:   #1B3A6B;
+  --navy-soft:  #2A4F8A;
+  --navy-tint:  #E8EEF7;
+  --grey-foot:  #0D2545;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--white);
+  color: var(--ink);
+  font-family: 'Jost', sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── NAVIGATION ─── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 64px; height: 72px;
+  background: rgba(237,237,237,0.97);
+  border-bottom: 1px solid var(--rule);
+}
+.nav-brand {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 22px; font-weight: 400;
+  color: var(--ink); text-decoration: none;
+  letter-spacing: 0.02em;
+}
+.nav-brand .dot { color: var(--gold); }
+.nav-pill {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--purple); border: 1px solid var(--purple-b);
+  padding: 3px 9px; margin-left: 10px; vertical-align: middle;
+}
+.nav-links { display: flex; align-items: center; gap: 36px; }
+.nav-links a {
+  font-size: 14px; font-weight: 400; color: var(--mid);
+  text-decoration: none; letter-spacing: 0.02em;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-cta {
+  font-size: 13px !important; font-weight: 500 !important;
+  color: var(--white) !important;
+  background: var(--purple);
+  padding: 9px 22px !important;
+  transition: background 0.2s !important;
+}
+.nav-cta:hover { background: var(--purple-l) !important; }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 120px 64px 80px;
+  background: var(--white);
+  position: relative; overflow: hidden;
+}
+.hero-rule {
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--purple) 0%, var(--gold) 50%, transparent 100%);
+}
+.hero-inner {
+  max-width: 1160px; margin: 0 auto; width: 100%;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 100px; align-items: center;
+}
+.hero-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--purple); margin-bottom: 28px;
+  display: flex; align-items: center; gap: 10px;
+}
+.hero-tag::before {
+  content: ''; width: 32px; height: 1px; background: var(--purple);
+}
+.hero-h1 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(44px, 5.5vw, 74px);
+  font-weight: 400; line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: var(--ink); margin-bottom: 28px;
+}
+.hero-h1 em { font-style: italic; color: var(--gold); }
+.hero-sub {
+  font-size: 17px; font-weight: 300; color: var(--mid);
+  max-width: 480px; line-height: 1.75; margin-bottom: 44px;
+}
+.hero-actions { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+.btn-p {
+  background: var(--purple); color: var(--white);
+  padding: 14px 32px; font-size: 14px; font-weight: 500;
+  text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase;
+  transition: background 0.2s, transform 0.15s; display: inline-block;
+}
+.btn-p:hover { background: var(--purple-l); transform: translateY(-1px); }
+.btn-text {
+  font-size: 14px; font-weight: 400; color: var(--mid);
+  text-decoration: none; border-bottom: 1px solid var(--rule);
+  padding-bottom: 1px; letter-spacing: 0.03em;
+  transition: color 0.2s, border-color 0.2s;
+}
+.btn-text:hover { color: var(--ink); border-color: var(--ink); }
+
+/* AI DASHBOARD PANEL */
+/* ─── AI DASHBOARD ─── */
+.ai-dash {
+  background: var(--dash-bg);
+  padding: 26px 26px 22px;
+  position: relative;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.ai-dash::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--purple), var(--gold), transparent);
+}
+.dash-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 18px; padding-bottom: 14px;
+  border-bottom: 1px solid var(--dash-rule);
+}
+.dash-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--dash-muted);
+}
+.dash-live {
+  display: flex; align-items: center; gap: 6px;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--purple-l);
+}
+.live-dot {
+  width: 6px; height: 6px; background: var(--purple-l); border-radius: 50%;
+  animation: blink 2s ease-in-out infinite;
+}
+@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+
+/* dashboard items */
+.di {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--dash-rule);
+}
+.di:last-of-type { border-bottom: none; padding-bottom: 0; }
+
+.di-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.di-name { font-size: 12px; font-weight: 400; color: rgba(255,255,255,0.72); letter-spacing: 0.01em; }
+.di-score {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 22px; font-weight: 400; line-height: 1;
+}
+
+/* score colour by status */
+.di.ok .di-score  { color: var(--status-ok); }
+.di.warn .di-score { color: var(--status-warn); }
+.di.bad .di-score  { color: var(--status-bad); }
+
+/* progress bar */
+.di-track {
+  height: 4px; background: rgba(255,255,255,0.1);
+  margin-bottom: 8px; border-radius: 2px; overflow: hidden;
+}
+.di-fill { height: 4px; border-radius: 2px; }
+.di.ok .di-fill   { background: var(--status-ok); }
+.di.warn .di-fill  { background: var(--status-warn); }
+.di.bad .di-fill   { background: var(--status-bad); }
+
+/* status label row */
+.di-status-row {
+  display: flex; align-items: center; gap: 8px;
+}
+.di-dot {
+  width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+}
+.di.ok .di-dot   { background: var(--status-ok); }
+.di.warn .di-dot  { background: var(--status-warn); }
+.di.bad .di-dot   { background: var(--status-bad); }
+.di-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase;
+}
+.di.ok .di-label  { color: var(--status-ok); }
+.di.warn .di-label { color: var(--status-warn); }
+.di.bad .di-label  { color: var(--status-bad); }
+
+/* AI alert box */
+.ai-alert {
+  margin-top: 16px;
+  background: rgba(91,31,166,0.15);
+  border-left: 2px solid var(--purple);
+  padding: 12px 14px;
+  border-radius: 0 2px 2px 0;
+}
+.alert-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--purple-l); margin-bottom: 7px;
+}
+.alert-text {
+  font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.6); line-height: 1.6;
+}
+
+/* ─── SHARED LAYOUT ─── */
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 64px; }
+section { padding: 110px 0; }
+.sec-head { text-align: center; max-width: 720px; margin: 0 auto 72px; }
+.sec-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 20px; display: block;
+}
+.sec-tag.purple { color: var(--purple); }
+h2 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(34px, 3.8vw, 52px);
+  font-weight: 400; line-height: 1.12;
+  letter-spacing: -0.01em; margin-bottom: 20px;
+}
+h2 em { font-style: italic; color: var(--gold); }
+h2 .em-p { font-style: italic; color: var(--purple); }
+.sub-text {
+  font-size: 17px; font-weight: 300; color: var(--mid); line-height: 1.75;
+}
+hr.rule { border: none; border-top: 1px solid var(--rule); margin: 0; }
+
+/* ─── STATS BAR ─── */
+.stats-bar {
+  background: var(--off);
+  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+  padding: 0;
+}
+.stats-inner {
+  max-width: 1160px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+}
+.stat-item {
+  padding: 48px 40px; border-right: 1px solid var(--rule); text-align: center;
+}
+.stat-item:last-child { border-right: none; }
+.stat-n {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 56px; font-weight: 400; color: var(--ink);
+  line-height: 1; display: block; margin-bottom: 12px;
+}
+.stat-n .gold-accent { color: var(--gold); }
+.stat-n .purple-accent { color: var(--purple); }
+.stat-d { font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.5; }
+
+/* ─── HOW AI WORKS ─── */
+.ai-section { background: var(--off); }
+.ai-layers { display: flex; flex-direction: column; gap: 1px; margin-top: 64px; }
+.ai-layer {
+  display: grid; grid-template-columns: 280px 1fr;
+  background: var(--off); border: 1px solid var(--rule);
+}
+.al-left {
+  padding: 48px 40px; border-right: 1px solid var(--rule);
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.al-num {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 72px; font-weight: 400; color: var(--light); line-height: 1;
+}
+.al-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.al-name {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 20px; font-weight: 400; line-height: 1.2;
+}
+.al-right { padding: 48px 56px; }
+.al-right h3 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 24px; font-weight: 400; margin-bottom: 16px; line-height: 1.3;
+}
+.al-right p { font-size: 15px; font-weight: 300; color: var(--mid); line-height: 1.75; margin-bottom: 12px; }
+.al-feats { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+.al-feat {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 4px 12px; border: 1px solid var(--rule); color: var(--muted);
+}
+.al-feat.purple-feat {
+  border-color: var(--purple-b); color: var(--purple); background: var(--purple-p);
+}
+
+/* ─── SERVICES ─── */
+.services-section { background: var(--white); }
+.tiers {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--rule); margin-top: 64px;
+}
+.tier {
+  background: var(--off); padding: 52px 40px;
+  position: relative;
+}
+.tier.feat {
+  background: var(--navy);
+}
+.tier.feat::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--purple), var(--gold));
+}
+.tier-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 20px; display: block;
+}
+.tier-name {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 32px; font-weight: 400; margin-bottom: 4px;
+}
+.tier.feat .tier-name { color: var(--white); }
+.tier-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 28px;
+}
+.tier.feat .tier-sub { color: rgba(255,255,255,0.3); }
+.tier-price {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 52px; font-weight: 400; color: var(--gold);
+  line-height: 1; margin-bottom: 6px;
+}
+.tier-freq {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 32px;
+}
+.tier.feat .tier-freq { color: rgba(255,255,255,0.3); }
+.tier-rule { border: none; border-top: 1px solid var(--rule); margin: 0 0 28px; }
+.tier.feat .tier-rule { border-color: rgba(255,255,255,0.1); }
+.tier-ul { list-style: none; padding: 0; }
+.tier-ul li {
+  font-size: 14px; font-weight: 300; color: var(--mid);
+  padding: 7px 0 7px 20px; position: relative;
+  border-bottom: 1px solid var(--rule); line-height: 1.5;
+}
+.tier.feat .tier-ul li { color: rgba(255,255,255,0.55); border-color: rgba(255,255,255,0.08); }
+.tier-ul li:last-child { border-bottom: none; }
+.tier-ul li::before { content: '—'; position: absolute; left: 0; color: var(--gold); }
+.ai-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px; letter-spacing: 0.06em;
+  color: var(--purple); margin-left: 4px;
+}
+.tier-target {
+  margin-top: 24px;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold);
+}
+
+/* ─── JUNIUS-STYLE EXPERTISE SECTION ─── */
+.expertise-section { background: var(--white); }
+.expertise-list { margin-top: 0; }
+.exp-item {
+  display: grid; grid-template-columns: 280px 1fr;
+  gap: 0; padding: 56px 0; border-bottom: 1px solid var(--rule);
+  align-items: start;
+}
+.exp-item:first-child { padding-top: 0; border-top: 1px solid var(--rule); }
+.exp-num {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 13px; font-weight: 400; color: var(--muted);
+  padding-top: 6px; letter-spacing: 0.04em;
+}
+.exp-body h3 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 26px; font-weight: 400; margin-bottom: 14px; line-height: 1.25;
+}
+.exp-body p { font-size: 15px; font-weight: 300; color: var(--mid); line-height: 1.75; max-width: 640px; }
+.exp-body p strong { font-weight: 500; color: var(--ink); }
+.exp-ai-note {
+  margin-top: 14px;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--purple);
+}
+
+/* ─── DIAGNOSTIC BAND ─── */
+.diag {
+  background: var(--navy);
+  padding: 80px 64px;
+  display: flex; align-items: center; justify-content: space-between; gap: 60px;
+}
+.diag-left h3 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 34px; font-weight: 400; color: var(--white); margin-bottom: 14px; line-height: 1.2;
+}
+.diag-left p { font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.5); max-width: 560px; line-height: 1.7; }
+.diag-ai {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--purple-l); margin-top: 12px;
+}
+.diag-right { flex-shrink: 0; text-align: right; }
+.diag-price {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 56px; font-weight: 400; color: var(--gold); line-height: 1; display: block;
+}
+.diag-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.3); display: block; margin-bottom: 20px;
+}
+.btn-outline {
+  border: 1px solid var(--white); color: var(--white);
+  padding: 12px 28px; font-size: 13px; font-weight: 500;
+  text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase;
+  display: inline-block; transition: background 0.2s, color 0.2s;
+}
+.btn-outline:hover { background: var(--white); color: var(--ink); }
+
+/* ─── WORKFLOW ─── */
+.workflow-section { background: var(--off); }
+.flow-steps {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 1px; background: var(--rule); margin-top: 64px;
+  position: relative;
+}
+.flow-step { background: var(--off); padding: 40px 28px; text-align: center; }
+.flow-n {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 48px; font-weight: 400; color: var(--light); line-height: 1;
+  margin-bottom: 12px; display: block;
+}
+.flow-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 16px; font-weight: 400; margin-bottom: 10px; line-height: 1.3;
+}
+.flow-desc { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.6; }
+.flow-ai {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--purple); margin-top: 10px;
+}
+
+/* ─── WHO ─── */
+.who-section { background: var(--white); }
+.who-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 0; align-items: start; }
+.who-list { list-style: none; padding: 0; }
+.who-item {
+  display: flex; gap: 24px; padding: 32px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.who-item:first-child { padding-top: 0; border-top: 1px solid var(--rule); }
+.who-mark {
+  width: 8px; height: 8px; background: var(--purple); border-radius: 50%;
+  flex-shrink: 0; margin-top: 8px;
+}
+.who-item h4 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 19px; font-weight: 400; margin-bottom: 6px; line-height: 1.3;
+}
+.who-item p { font-size: 14px; font-weight: 300; color: var(--mid); line-height: 1.65; }
+.who-quote-box {
+  background: var(--light); border-top: 3px solid var(--purple);
+  padding: 44px 40px;
+}
+.wq-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 20px;
+}
+blockquote {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 20px; font-style: italic; font-weight: 400;
+  color: var(--ink); line-height: 1.55; margin-bottom: 20px;
+}
+cite { font-size: 13px; font-style: normal; font-weight: 300; color: var(--muted); display: block; }
+cite strong { font-weight: 500; color: var(--mid); }
+.ai-edge { margin-top: 36px; padding-top: 32px; border-top: 1px solid var(--rule); }
+.ae-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--purple); margin-bottom: 14px;
+}
+.ae-item { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 10px; }
+.ae-dot { width: 5px; height: 5px; background: var(--purple); border-radius: 50%; flex-shrink: 0; margin-top: 7px; }
+.ae-item p { font-size: 13px; font-weight: 300; color: var(--mid); line-height: 1.6; margin: 0; }
+
+/* ─── NAME SECTION ─── */
+.name-section { background: var(--off); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.name-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
+.name-word {
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(80px, 11vw, 148px); font-weight: 400;
+  color: var(--ink); line-height: 0.9; letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+.name-etym {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold);
+}
+.name-right p { font-size: 17px; font-weight: 300; color: var(--mid); line-height: 1.8; margin-bottom: 18px; }
+.name-right p strong { color: var(--ink); font-weight: 500; }
+.name-purple-line {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 17px; font-style: italic; color: var(--purple);
+  border-left: 2px solid var(--purple); padding-left: 20px; margin-top: 28px;
+  line-height: 1.6;
+}
+
+/* ─── GLOBAL ─── */
+.global-section { background: var(--navy); }
+.global-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.1); margin-top: 64px; }
+.global-card { background: var(--navy); padding: 52px 48px; }
+.global-card.active { background: var(--navy-mid); }
+.gc-flag { font-size: 36px; margin-bottom: 20px; display: block; }
+.gc-country {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 30px; font-weight: 400; color: var(--white); margin-bottom: 6px;
+}
+.gc-status {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 20px; display: block;
+}
+.gc-text { font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.45); line-height: 1.7; margin-bottom: 16px; }
+.gc-facts { display: flex; flex-direction: column; gap: 6px; }
+.gc-fact {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.25); padding: 6px 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.gc-fact span { color: rgba(255,255,255,0.5); }
+
+/* ─── PULL QUOTE ─── */
+.pull-section { background: var(--white); padding: 80px 0; }
+.pull-inner { max-width: 920px; margin: 0 auto; padding: 0 64px; text-align: center; }
+.pull-mark {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 80px; line-height: 0.6; color: var(--purple); opacity: 0.15;
+  display: block; margin-bottom: -20px;
+}
+.pull-q {
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(24px, 3vw, 36px); font-style: italic; font-weight: 400;
+  color: var(--ink); line-height: 1.45;
+}
+.pull-q strong { font-style: normal; color: var(--purple); }
+
+/* ─── CTA ─── */
+.cta-section {
+  background: var(--purple);
+  padding: 100px 64px; text-align: center;
+}
+.cta-section h2 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(36px, 4.5vw, 62px); font-weight: 400;
+  color: var(--white); line-height: 1.12; margin-bottom: 20px;
+}
+.cta-section h2 em { font-style: italic; color: var(--gold-l); }
+.cta-section p {
+  font-size: 17px; font-weight: 300; color: rgba(255,255,255,0.65);
+  max-width: 520px; margin: 0 auto 44px; line-height: 1.75;
+}
+.btn-w {
+  background: var(--white); color: var(--purple);
+  padding: 16px 44px; font-size: 14px; font-weight: 600;
+  text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase;
+  display: inline-block; transition: background 0.2s, transform 0.15s;
+}
+.btn-w:hover { background: var(--off); transform: translateY(-1px); }
+.cta-sub { margin-top: 20px; font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.4); }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--grey-foot); padding: 56px 64px;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px;
+}
+.f-brand {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 24px; font-weight: 400; color: var(--white);
+}
+.f-brand .dot { color: var(--gold); }
+.f-mid {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+}
+.f-links { display: flex; gap: 28px; }
+.f-links a { font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
+.f-links a:hover { color: var(--white); }
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+.hero-tag { animation: fadeUp 0.6s ease both; }
+.hero-h1 { animation: fadeUp 0.6s ease 0.1s both; }
+.hero-sub { animation: fadeUp 0.6s ease 0.18s both; }
+.hero-actions { animation: fadeUp 0.6s ease 0.24s both; }
+.ai-dash { animation: fadeUp 0.7s ease 0.3s both; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 960px) {
+  .nav { padding: 0 28px; }
+  .nav-links { display: none; }
+  .hero, .diag, .cta-section, footer { padding-left: 28px; padding-right: 28px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 52px; padding: 80px 28px 60px; }
+  .wrap { padding: 0 28px; }
+  .stats-inner, .tiers, .flow-steps { grid-template-columns: 1fr; }
+  .stat-item { border-right: none; border-bottom: 1px solid var(--rule); }
+  .ai-layer, .exp-item { grid-template-columns: 1fr; }
+  .al-left, .exp-num { border-right: none; border-bottom: 1px solid var(--rule); padding-bottom: 24px; margin-bottom: 4px; }
+  .who-grid, .name-inner, .global-grid { grid-template-columns: 1fr; gap: 48px; }
+  .diag { flex-direction: column; align-items: flex-start; }
+  .diag-right { text-align: left; }
+  .pull-inner { padding: 0 28px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="file:///C:/Users/JADESOLA/Downloads/aemula-website-v4.html#" class="nav-brand">Aemula<span class="dot">.</span><span class="nav-pill">AI-Enabled</span></a>
+  <div class="nav-links">
+    <a href="file:///C:/Users/JADESOLA/Downloads/aemula-website-v4.html#how">How It Works</a>
+    <a href="file:///C:/Users/JADESOLA/Downloads/aemula-website-v4.html#services">Services</a>
+    <a href="file:///C:/Users/JADESOLA/Downloads/aemula-website-v4.html#expertise">Track Record</a>
+    <a href="file:///C:/Users/JADESOLA/Downloads/aemula-website-v4.html#global">UK &amp; Netherlands</a>
+    <a href="file:///C:/Users/JADESOLA/Downloads/aemula-website-v4.html#contact" class="nav-cta">Book a Discovery Call</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-rule"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">Operational Profit Recovery · Manufacturing SMEs</div>
+      <h1 class="hero-h1">
+        Your operation is<br>
+        losing profit you<br>
+        cannot <em>see yet.</em>
+      </h1>
+      <p class="hero-sub">
+        Aemula finds the money manufacturing businesses are losing inside their own operations, quantifies it in pounds, and builds the system that locks those gains in permanently. AI-enabled. Expert-led. Built on a verified £3m track record.
+      </p>
+      <div class="hero-actions">
+        <a href="file:///C:/Users/JADESOLA/Downloads/aemula-website-v4.html#contact" class="btn-p">Book an Operational Assessment</a>
+        <a href="file:///C:/Users/JADESOLA/Downloads/aemula-website-v4.html#how" class="btn-text">See how it works</a>
+      </div>
+    </div>
+
+    <div class="ai-dash">
+      <div class="dash-header">
+        <span class="dash-title">Aemula Operational Tracker</span>
+        <div class="dash-live"><span class="live-dot"></span>AI Live</div>
+      </div>
+
+      <div class="di ok">
+        <div class="di-row">
+          <span class="di-name">Labour Utilisation — Shop Floor</span>
+          <span class="di-score">84</span>
+        </div>
+        <div class="di-track"><div class="di-fill" style="width:84%;"></div></div>
+        <div class="di-status-row">
+          <span class="di-dot"></span>
+          <span class="di-label">On track · £180k annual saving locked in</span>
+        </div>
+      </div>
+
+      <div class="di warn">
+        <div class="di-row">
+          <span class="di-name">Process Redesign — Production Line 2</span>
+          <span class="di-score">54</span>
+        </div>
+        <div class="di-track"><div class="di-fill" style="width:54%;"></div></div>
+        <div class="di-status-row">
+          <span class="di-dot"></span>
+          <span class="di-label">⚠ Efficiency drift — team reverting to old process</span>
+        </div>
+      </div>
+
+      <div class="di bad">
+        <div class="di-row">
+          <span class="di-name">ERP Implementation — Output Targets</span>
+          <span class="di-score">29</span>
+        </div>
+        <div class="di-track"><div class="di-fill" style="width:29%;"></div></div>
+        <div class="di-status-row">
+          <span class="di-dot"></span>
+          <span class="di-label">⚑ Critical — £340k gain at risk of being lost</span>
+        </div>
+      </div>
+
+      <div class="ai-alert">
+        <div class="alert-label">✦ AI Insight · Generated 90 minutes ago</div>
+        <p class="alert-text">"Throughput variance on Line 2 has increased 31% over 4 weeks. Pattern suggests the efficiency gain is not embedding. Intervention now recovers the benefit. Delay makes it permanent."</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="rule">
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <span class="stat-n">£<span class="gold-accent">3</span>m+</span>
+      <p class="stat-d">in operational savings identified and validated across two major organisations — verified, quantified, and built to last</p>
+    </div>
+    <div class="stat-item">
+      <span class="stat-n"><span class="purple-accent">£250k</span></span>
+      <p class="stat-d">to £1m in recoverable profit sitting inside the average manufacturing SME — invisible without the right diagnostic process</p>
+    </div>
+    <div class="stat-item">
+      <span class="stat-n"><span class="purple-accent">4</span>×</span>
+      <p class="stat-d">more likely to lock in efficiency gains permanently when a structured accountability system is built alongside the improvement</p>
+    </div>
+  </div>
+</div>
+
+<hr class="rule">
+
+<!-- HOW AI WORKS -->
+<section class="ai-section" id="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag purple">How Aemula Works</span>
+      <h2>Operational profit recovery, <span class="em-p">powered by AI.</span></h2>
+      <p class="sub-text">Aemula combines expert diagnostic methodology with AI to find the profit your manufacturing operation is losing, quantify it in real numbers, and build the accountability system that makes sure the gains stick permanently.</p>
+    </div>
+
+    <div class="ai-layers">
+      <div class="ai-layer">
+        <div class="al-left">
+          <div class="al-num">01</div>
+          <div>
+            <div class="al-label" style="color:var(--purple);">Identify &amp; Quantify</div>
+            <div class="al-name">The Operational Profit Diagnostic</div>
+          </div>
+        </div>
+        <div class="al-right">
+          <h3>Finding the profit your operation is losing — in real numbers</h3>
+          <p>Most manufacturing SME owners know something is wrong. Margins are tighter than they should be. A system was implemented and nothing changed. A team grew and somehow the business got slower. The problem is real. The source is invisible from inside the operation.</p>
+          <p>Aemula's diagnostic process identifies every area of operational inefficiency, quantifies the financial impact in pounds, and prioritises the interventions that will deliver the fastest and most significant return. <strong>You receive a board-ready report with a clear number attached to every finding.</strong></p>
+          <div class="al-feats">
+            <span class="al-feat purple-feat">Operational inefficiency mapping</span>
+            <span class="al-feat purple-feat">Financial impact quantification</span>
+            <span class="al-feat purple-feat">AI-assisted pattern analysis</span>
+            <span class="al-feat">Priority intervention plan</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ai-layer">
+        <div class="al-left">
+          <div class="al-num">02</div>
+          <div>
+            <div class="al-label" style="color:var(--gold);">Track &amp; Alert</div>
+            <div class="al-name">AI monitors gains continuously</div>
+          </div>
+        </div>
+        <div class="al-right">
+          <h3>The gain is found. Now it has to be kept.</h3>
+          <p>The most common failure in operational improvement is not finding the problem — it is ensuring the fix actually holds. Teams revert. Old habits return. The system goes live and six months later nothing has changed. Aemula's AI connects to your operational data and monitors benefit indicators continuously between every review session.</p>
+          <p>When adoption is slipping or an efficiency gain is drifting from its target, the AI flags it before the reversal becomes permanent. <strong>Early warning makes intervention possible. Late discovery makes it expensive.</strong></p>
+          <div class="al-feats">
+            <span class="al-feat purple-feat">Continuous gain monitoring</span>
+            <span class="al-feat purple-feat">Process adherence tracking</span>
+            <span class="al-feat purple-feat">Early warning alerts</span>
+            <span class="al-feat">Real-time operational dashboards</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ai-layer">
+        <div class="al-left">
+          <div class="al-num">03</div>
+          <div>
+            <div class="al-label" style="color:#7B3FC4;">Lock &amp; Grow</div>
+            <div class="al-name">Embedding gains permanently</div>
+          </div>
+        </div>
+        <div class="al-right">
+          <h3>Building the accountability system that makes improvement permanent</h3>
+          <p>Aemula does not leave when the diagnostic is complete. Every engagement includes a structured accountability framework — named owners for every identified gain, regular review sessions informed by AI analysis, and a Benefits Register that tracks what has been recovered and what remains reachable.</p>
+          <p>Before every session, AI generates a complete operational status briefing. After every session, it updates the register, action log and next milestone targets. <strong>The adviser focuses entirely on the conversation that drives the outcome. The platform handles everything else.</strong></p>
+          <div class="al-feats">
+            <span class="al-feat purple-feat">Benefits Register &amp; governance</span>
+            <span class="al-feat purple-feat">Named accountability owners</span>
+            <span class="al-feat purple-feat">AI session briefings</span>
+            <span class="al-feat">Post-Implementation Reviews</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- DIAGNOSTIC BAND -->
+<div class="diag">
+  <div class="diag-left">
+    <h3>Start with an Operational Profit Diagnostic</h3>
+    <p>A structured assessment that maps every area of operational inefficiency inside your manufacturing business. We identify the financial impact of each finding, prioritise the interventions that deliver the fastest return, and produce a written action plan within 48 hours. No ongoing commitment required.</p>
+    <div class="diag-ai">✦ AI-assisted analysis · Expert-led session · Board-ready written report</div>
+  </div>
+  <div class="diag-right">
+    <span class="diag-price">£5,000</span>
+    <span class="diag-sub">Fixed price · No ongoing commitment</span>
+    <a href="file:///C:/Users/JADESOLA/Downloads/aemula-website-v4.html#contact" class="btn-outline">Book your Diagnostic</a>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">Engagement Models</span>
+      <h2>Three tiers. One <em>proven framework.</em></h2>
+      <p class="sub-text">Every engagement starts with the Operational Profit Diagnostic. From there, the level of ongoing support depends on the scale of your operation, the complexity of improvement activity, and how deeply you want Aemula embedded in your governance.</p>
+    </div>
+
+    <div class="tiers">
+      <div class="tier">
+        <span class="tier-badge">Improvement Level</span>
+        <div class="tier-name">Recover</div>
+        <div class="tier-sub">1–2 improvement workstreams</div>
+        <div class="tier-price">£2,500</div>
+        <div class="tier-freq">per month</div>
+        <hr class="tier-rule">
+        <ul class="tier-ul">
+          <li>Operational Profit Diagnostic (initial)<span class="ai-tag">✦ AI</span></li>
+          <li>Benefits tracking — per workstream<span class="ai-tag">✦ AI</span></li>
+          <li>Monthly review session (60 min)</li>
+          <li>Process adherence monitoring<span class="ai-tag">✦ AI</span></li>
+          <li>Early warning alerts — gain drift<span class="ai-tag">✦ AI</span></li>
+          <li>Monthly operational status report<span class="ai-tag">✦ AI</span></li>
+        </ul>
+        <div class="tier-target">Best for: focused improvement · SMEs 20–80 staff</div>
+      </div>
+
+      <div class="tier feat">
+        <span class="tier-badge">Operations Level · Most Chosen</span>
+        <div class="tier-name">Sustain</div>
+        <div class="tier-sub">Full operational review · AI integration</div>
+        <div class="tier-price">£3,500</div>
+        <div class="tier-freq">per month</div>
+        <hr class="tier-rule">
+        <ul class="tier-ul">
+          <li>Everything in Recover</li>
+          <li>AI connects to operational &amp; business data<span class="ai-tag">✦ AI</span></li>
+          <li>Full efficiency mapping &amp; dependency tracking<span class="ai-tag">✦ AI</span></li>
+          <li>Change management support — embedding plans</li>
+          <li>Monthly 90-min session + AI pre-briefing<span class="ai-tag">✦ AI</span></li>
+          <li>Named accountability owners — all gains</li>
+          <li>Post-Implementation Review facilitation</li>
+          <li>Quarterly operational performance report<span class="ai-tag">✦ AI</span></li>
+        </ul>
+        <div class="tier-target">Best for: active improvement programmes · 50–150 staff</div>
+      </div>
+
+      <div class="tier">
+        <span class="tier-badge">Leadership Level · Fractional</span>
+        <div class="tier-name">Scale</div>
+        <div class="tier-sub">Full operation · Fractional Efficiency Director</div>
+        <div class="tier-price">£6,000</div>
+        <div class="tier-freq">per month</div>
+        <hr class="tier-rule">
+        <ul class="tier-ul">
+          <li>Everything in Sustain</li>
+          <li>Named fractional Efficiency Director</li>
+          <li>Board-level integration — embedded in governance<span class="ai-tag">✦ AI</span></li>
+          <li>Business case profiling — pre-investment<span class="ai-tag">✦ AI</span></li>
+          <li>AI dis-benefit identification &amp; mitigation<span class="ai-tag">✦ AI</span></li>
+          <li>Fortnightly sessions + open advisory access</li>
+          <li>Annual operational efficiency review<span class="ai-tag">✦ AI</span></li>
+        </ul>
+        <div class="tier-target">Best for: complex operations · 100–250 staff</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- TRACK RECORD & EXPERTISE -->
+<section class="expertise-section" id="expertise">
+  <div class="wrap">
+    <div class="sec-head" style="text-align:left;max-width:100%;margin-bottom:0;">
+      <span class="sec-tag">Track Record &amp; Expertise</span>
+      <h2 style="max-width:640px;">£3m in verified savings.<br>Here is <em>how it was done.</em></h2>
+    </div>
+
+    <div class="expertise-list" style="margin-top:64px;">
+      <div class="exp-item">
+        <div class="exp-num">01</div>
+        <div class="exp-body">
+          <h3>Environment Agency — £1m+ in Validated Efficiencies</h3>
+          <p>Aemula delivered a full benefits identification, quantification and assurance programme across the Hub and Spoke Efficiencies Programme — 13 operating model review projects spanning five directorates. Every efficiency was quantified as cash-releasing or non-cash releasing, assured against the Defra Group Benefits Management Framework, and embedded into a governance structure with named owners and a realisation plan. <strong>The result: a full list of assured efficiencies for FY25/26 and a quantified forecast for FY26/27 — with the documentation to hold every gain accountable.</strong></p>
+          <div class="exp-ai-note">✦ Benefits Management Strategy · Benefits Register · Benefits Profiles · Realisation Plan</div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-num">02</div>
+        <div class="exp-body">
+          <h3>Greater Manchester Police — £2m in Identified Savings</h3>
+          <p>Established a full benefits realisation system across one of the UK's largest metropolitan police forces — identifying £2m in operational savings, building the governance infrastructure to track them, and creating the accountability framework that ensured identified gains were owned, measured and pursued beyond the initial engagement. <strong>The system built during this engagement continued to operate after Aemula's involvement concluded — which is exactly what a well-designed benefits realisation framework should do.</strong></p>
+          <div class="exp-ai-note">✦ Benefits Realisation System · Operational savings identification · Governance framework</div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-num">03</div>
+        <div class="exp-body">
+          <h3>Operational Inefficiency Identification</h3>
+          <p>The core Aemula diagnostic capability: walking into an operation and finding the profit it is losing faster than anyone inside can see it. The patterns repeat across organisations of every size and sector — processes that grew without being redesigned, systems that were implemented without changing behaviour, teams that expanded without the structure to support the growth. <strong>Every pattern has a financial cost. Every cost can be quantified. Every quantified cost can be recovered.</strong></p>
+          <div class="exp-ai-note">✦ AI-assisted pattern analysis · Financial quantification · Priority intervention planning</div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-num">04</div>
+        <div class="exp-body">
+          <h3>Benefits Embedding &amp; Change Management</h3>
+          <p>Finding inefficiency is the easier half of the work. The harder half is ensuring the fix actually holds six months after the engagement concludes. Aemula's change management practice bridges the gap between identifying a problem and permanently changing the behaviour that caused it — building the accountability structures, coaching the people responsible, and using AI to monitor whether the change is embedding or reverting. <strong>Delivery is the start. Embedding is the work.</strong></p>
+          <div class="exp-ai-note">✦ Adoption tracking · Behavioural change monitoring · Accountability frameworks</div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-num">05</div>
+        <div class="exp-body">
+          <h3>The Aemula Platform — AI-Enabled, Launching 2026</h3>
+          <p>The consultancy methodology is being built into an AI-enabled SaaS platform that does continuously what Aemula currently does episodically — analysing operational data in real time to surface hidden inefficiencies, tracking the realisation of identified benefits live, and alerting business owners before a gain that has been found is lost again. <strong>The platform is trained on real engagement data, not synthetic models. Every consultancy engagement is both revenue and product development.</strong></p>
+          <div class="exp-ai-note">✦ AI platform · Real-time tracking · SaaS subscription · Launching 2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- WORKFLOW -->
+<section class="workflow-section" id="cycle">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag purple">The Aemula Process</span>
+      <h2>From hidden cost <em>to locked-in gain.</em></h2>
+      <p class="sub-text">Operational profit recovery is not a one-off exercise. It is a discipline that runs from the first diagnostic conversation through to a permanent improvement embedded into how your business operates every day.</p>
+    </div>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <span class="flow-n">01</span>
+        <div class="flow-title">Identify &amp; Quantify</div>
+        <p class="flow-desc">Map every area of operational inefficiency. Attach a real number to each one. Prioritise by impact and speed of recovery.</p>
+        <div class="flow-ai">✦ AI-assisted</div>
+      </div>
+      <div class="flow-step">
+        <span class="flow-n">02</span>
+        <div class="flow-title">Plan &amp; Own</div>
+        <p class="flow-desc">Build the intervention plan. Assign named owners to every identified gain. Define how and when each recovery will be measured.</p>
+        <div class="flow-ai">✦ AI-powered</div>
+      </div>
+      <div class="flow-step">
+        <span class="flow-n">03</span>
+        <div class="flow-title">Track &amp; Alert</div>
+        <p class="flow-desc">AI connects to operational data. Gain indicators are monitored continuously. Early warning before drift becomes permanent.</p>
+        <div class="flow-ai">✦ AI-powered</div>
+      </div>
+      <div class="flow-step">
+        <span class="flow-n">04</span>
+        <div class="flow-title">Review &amp; Intervene</div>
+        <p class="flow-desc">Regular structured review sessions informed by AI briefings. Gaps addressed before they compound. Accountability maintained throughout.</p>
+        <div class="flow-ai">✦ AI-assisted</div>
+      </div>
+      <div class="flow-step">
+        <span class="flow-n">05</span>
+        <div class="flow-title">Embed &amp; Grow</div>
+        <p class="flow-desc">Improvements embedded into daily operations permanently. Post-implementation review closes the loop. Pattern library grows for future gains.</p>
+        <div class="flow-ai">✦ AI-powered</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- PULL QUOTE -->
+<div class="pull-section">
+  <div class="pull-inner">
+    <span class="pull-mark">"</span>
+    <p class="pull-q">Most manufacturers know something is costing them. <strong>Very few know exactly what, or exactly how much.</strong> That is the gap Aemula closes.</p>
+  </div>
+</div>
+
+<hr class="rule">
+
+<!-- WHO -->
+<section class="who-section" id="who">
+  <div class="wrap">
+    <div class="sec-head" style="text-align:left;max-width:100%;margin-bottom:64px;">
+      <span class="sec-tag">Who We Work With</span>
+      <h2 style="max-width:640px;">Built for manufacturing leaders <em>accountable</em> for operational performance.</h2>
+    </div>
+    <div class="who-grid">
+      <ul class="who-list">
+        <li class="who-item">
+          <div class="who-mark"></div>
+          <div>
+            <h4>Managing Directors &amp; Business Owners</h4>
+            <p>Accountable for the overall performance of the operation. Aemula gives MDs the clear, number-based picture of where their business is losing money and a structured plan to recover it — without needing to step away from running the business to find it themselves.</p>
+          </div>
+        </li>
+        <li class="who-item">
+          <div class="who-mark"></div>
+          <div>
+            <h4>Operations Directors &amp; Managers</h4>
+            <p>Responsible for what happens on the shop floor and across the supply chain. Aemula works alongside operations leaders to identify the inefficiencies that are invisible from inside the day-to-day, quantify their cost, and build the monitoring system that makes sure improvements actually stick.</p>
+          </div>
+        </li>
+        <li class="who-item">
+          <div class="who-mark"></div>
+          <div>
+            <h4>Finance Directors &amp; CFOs</h4>
+            <p>Focused on margin, cost and return on investment. Aemula speaks the language of finance directors — every finding is quantified in pounds, every intervention is measured against a baseline, and every improvement is tracked to confirm the return is real and permanent.</p>
+          </div>
+        </li>
+        <li class="who-item">
+          <div class="who-mark"></div>
+          <div>
+            <h4>Growth-Stage Manufacturers Who Have Scaled Fast</h4>
+            <p>Fast growth creates invisible inefficiency. Processes that worked at 30 people break at 80. Systems implemented during expansion rarely deliver their promised return. Aemula specialises in finding the operational cost of rapid growth and building the structure that turns scale into sustained margin.</p>
+          </div>
+        </li>
+      </ul>
+
+      <div class="who-quote-box">
+        <div class="wq-label">What Clients Say</div>
+        <blockquote>"We knew something was costing us but we could not see where. Within weeks Aemula had identified and quantified the problem. Within months we had recovered the gain and built the system to make sure we kept it."</blockquote>
+        <cite>— <strong>Operations Director, UK Manufacturing SME</strong></cite>
+
+        <div class="ai-edge">
+          <div class="ae-label">✦ The Aemula Difference</div>
+          <div class="ae-item">
+            <div class="ae-dot"></div>
+            <p>Every finding is quantified in pounds before any work begins</p>
+          </div>
+          <div class="ae-item">
+            <div class="ae-dot"></div>
+            <p>AI monitors gains continuously — not just at quarterly reviews</p>
+          </div>
+          <div class="ae-item">
+            <div class="ae-dot"></div>
+            <p>Named owners are accountable for every identified gain throughout the engagement</p>
+          </div>
+          <div class="ae-item">
+            <div class="ae-dot"></div>
+            <p>Built on a verified £3m track record across two major UK organisations</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- NAME SECTION -->
+<section class="name-section">
+  <div class="wrap">
+    <div class="name-inner">
+      <div>
+        <div class="name-word">Aemula</div>
+        <div class="name-etym">Latin · aemulari · "to close the gap"</div>
+      </div>
+      <div class="name-right">
+        <p>The Romans used <em>aemulari</em> to describe the discipline of striving to close the gap between where you are and where you intended to be. Not rivalry. Not competition. <strong>The act of making reality match intention.</strong></p>
+        <p>In manufacturing, that gap has a cost. It is the distance between what your operation should be producing and what it actually produces. Between the margin your business case promised and the margin your P&amp;L shows. Between the efficiency your new system was supposed to deliver and the reality six months after go-live.</p>
+        <p class="name-purple-line">Aemula finds that gap, puts a number on it, and builds the system that closes it permanently.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- GLOBAL -->
+<section class="global-section" id="global">
+  <div class="wrap">
+    <div class="sec-head" style="text-align:left;max-width:100%;margin-bottom:64px;">
+      <span class="sec-tag" style="color:rgba(255,255,255,0.35);">Where We Operate</span>
+      <h2 style="color:var(--white);max-width:640px;">Yorkshire to <em>Amsterdam.</em></h2>
+      <p class="sub-text" style="color:rgba(255,255,255,0.4);">Operational inefficiency is a global challenge. Aemula is building deep expertise in two markets where the gap between what businesses invest in improvement and what they actually recover is most acute — and most underserved.</p>
+    </div>
+    <div class="global-grid">
+      <div class="global-card active">
+        <span class="gc-flag">🇬🇧</span>
+        <div class="gc-country">United Kingdom</div>
+        <span class="gc-status">Primary Market · Active Now</span>
+        <p class="gc-text">Yorkshire and the North of England. Working with manufacturing SMEs, growth businesses and operational leaders across Leeds, Sheffield, Bradford, Manchester and beyond. Built on a verified £3m track record across the Environment Agency and Greater Manchester Police. Now bringing the same rigour to manufacturing businesses with 20 to 250 employees.</p>
+        <div class="gc-facts">
+          <div class="gc-fact">Primary sector: <span>Manufacturing · Operations · Industrial SMEs</span></div>
+          <div class="gc-fact">Also serving: <span>Professional services · Growth businesses · Post-acquisition</span></div>
+          <div class="gc-fact">Engagement from: <span>£2,500 per month · Diagnostic from £5,000</span></div>
+        </div>
+      </div>
+      <div class="global-card active">
+        <span class="gc-flag">🇳🇱</span>
+        <div class="gc-country">Netherlands</div>
+        <span class="gc-status">Launching 2026 · Operational Efficiency Focus</span>
+        <p class="gc-text">The Netherlands is Europe's most investment-active small economy — and has a nationally documented gap between what is spent on operational improvement and what those investments actually return. Dutch SMEs and mid-market manufacturers are running transformation programmes at scale with limited benefits governance. That is precisely where Aemula adds value.</p>
+        <div class="gc-facts">
+          <div class="gc-fact">Entry cities: <span>Amsterdam · Rotterdam · Eindhoven</span></div>
+          <div class="gc-fact">Focus: <span>Manufacturing · Operational efficiency · Digital transformation</span></div>
+          <div class="gc-fact">Pricing: <span>€3,000 – €7,500 per month</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <h2>Your operation is losing profit<br>you cannot <em>see yet.</em></h2>
+  <p>Start with an Operational Profit Diagnostic. Fixed fee of £5,000. We identify every area of inefficiency inside your manufacturing business, quantify the financial impact in pounds, and deliver a written action plan within 48 hours. No ongoing commitment required.</p>
+  <a href="mailto:hello@aemula.com" class="btn-w">Book an Operational Diagnostic</a>
+  <div class="cta-sub">hello@aemula.com · We respond within one business day · UK &amp; Netherlands</div>
+</section>
+
+<footer>
+  <div class="f-brand">Aemula<span class="dot">.</span></div>
+  <div class="f-mid">Operational Profit Recovery · Manufacturing SMEs · UK &amp; Netherlands · 2026</div>
+  <div class="f-links">
+    <a href="file:///C:/Users/JADESOLA/Downloads/aemula-website-v4.html#how">How It Works</a>
+    <a href="file:///C:/Users/JADESOLA/Downloads/aemula-website-v4.html#services">Services</a>
+    <a href="file:///C:/Users/JADESOLA/Downloads/aemula-website-v4.html#expertise">Track Record</a>
+    <a href="file:///C:/Users/JADESOLA/Downloads/aemula-website-v4.html#global">UK &amp; Netherlands</a>
+    <a href="file:///C:/Users/JADESOLA/Downloads/aemula-website-v4.html#contact">Contact</a>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="file:///C:/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script></script></body></html>
